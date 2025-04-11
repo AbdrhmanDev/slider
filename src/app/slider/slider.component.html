@@ -1,0 +1,26 @@
+<main class="slider-container" role="region" aria-label="Image gallery">
+  <div class="main-image">
+    <ngx-image-viewer
+      #imgView
+      [src]="images"
+      [(config)]="config"
+      [(index)]="currentIndex"
+      (customEvent)="handleEvent($event)"
+    >
+    </ngx-image-viewer>
+  </div>
+
+  <app-thumbnail-gallery
+    [images]="images"
+    [activeIndex]="currentIndex"
+    (thumbnailClick)="openFullscreen($event)"
+  ></app-thumbnail-gallery>
+
+  <app-fullscreen-viewer
+    [images]="images"
+    [currentIndex]="currentIndex"
+    [isVisible]="isFullscreen"
+    (close)="closeFullscreen()"
+    (customEvent)="handleEvent($event)"
+  ></app-fullscreen-viewer>
+</main>

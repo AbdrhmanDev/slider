@@ -1,0 +1,18 @@
+<nav
+  class="thumbnail-container"
+  role="navigation"
+  aria-label="Image thumbnails"
+>
+  <div
+    class="thumbnail"
+    *ngFor="let image of images; let i = index"
+    [class.active]="i === activeIndex"
+    (click)="selectImage(i)"
+    [attr.aria-label]="'View image ' + (i + 1)"
+    role="button"
+    tabindex="0"
+    (keydown.enter)="selectImage(i)"
+  >
+    <img [src]="image" [alt]="'Thumbnail ' + (i + 1)" loading="lazy" />
+  </div>
+</nav>

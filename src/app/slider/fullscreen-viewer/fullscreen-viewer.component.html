@@ -1,0 +1,25 @@
+<div
+  class="fullscreen-overlay"
+  *ngIf="isVisible"
+  role="dialog"
+  aria-label="Fullscreen image view"
+  (click)="closeViewer()"
+>
+  <div class="overlay-content" (click)="$event.stopPropagation()">
+    <button
+      class="close-button"
+      (click)="closeViewer()"
+      aria-label="Close fullscreen view"
+    >
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+
+    <ngx-image-viewer
+      [src]="images"
+      [(config)]="config"
+      [(index)]="currentIndex"
+      (customEvent)="handleCustomEvent($event)"
+    >
+    </ngx-image-viewer>
+  </div>
+</div>
