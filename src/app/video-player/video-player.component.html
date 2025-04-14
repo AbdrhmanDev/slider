@@ -1,1 +1,82 @@
-<p>video-player works!</p>
+<div class="video-container">
+  <div class="video-wrapper">
+    <video
+      #videoElement
+      [src]="video?.src"
+      (timeupdate)="onTimeUpdate()"
+      class="video-element"
+      preload="auto"
+    ></video>
+
+    <div class="controls-overlay">
+      <!-- Progress bar with preview -->
+      <div class="progress-container">
+        <div class="progress-bar-bg"></div>
+        <div class="progress-bar-buffer" [style.width.%]="(nativeVideo.buffered.length > 0 ? nativeVideo.buffered.end(nativeVideo.buffered.length - 1) / nativeVideo.duration * 100 : 0)"></div>
+        <div class="progress-bar-fill" [style.width.%]="(currentTime / duration) * 100"></div>
+        <input 
+          type="range" 
+          class="progress-slider" 
+          min="0" 
+          [max]="duration" 
+          [value]="currentTime" 
+          (input)="seek($any($event.target).value)"
+        >
+        <div class="time-display">
+          <span>{{ formatTime(currentTime) }}</span>
+          <span class="time-separator">/</span>
+          <span>{{ formatTime(duration) }}</span>
+        </div>
+      </div>
+
+      <!-- Control buttons -->
+      <div class="control-buttons">
+        <div class="left-controls">
+          <button class="control-button play-button" (click)="togglePlay()">
+            <mat-icon>{{ isPlaying ? "pause" : "play_arrow" }}</mat-icon>
+          </button>
+
+          <div class="volume-control">
+            <button class="control-button" (click)="toggleMute()">
+              <mat-icon>
+                {{
+                  isMuted
+                    ? "volume_off"
+                    : volume > 0.5
+                    ? "volume_up"
+                    : "volume_down"
+                }}
+              </mat-icon>
+            </button>
+            <div class="volume-slider-container">
+              <div class="volume-slider-bg"></div>
+              <div class="volume-slider-fill" [style.width.%]="volume * 100"></div>
+              <input
+                type="range"
+                class="volume-slider"
+                min="0"
+                max="1"
+                step="0.01"
+                [value]="volume"
+                (input)="updateVolume($any($event.target).value)"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="right-controls">
+          <button class="control-button fullscreen-button" (click)="toggleFullscreen()">
+            <mat-icon>{{
+              isFullscreen ? "fullscreen_exit" : "fullscreen"
+            }}</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Big play button overlay -->
+    <div class="big-play-button" *ngIf="!isPlaying" (click)="togglePlay()">
+      <mat-icon>play_arrow</mat-icon>
+    </div>
+  </div>
+</div>

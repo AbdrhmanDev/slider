@@ -1,0 +1,7 @@
+<div class="video-info" *ngIf="video">
+  <h3>{{ video.title }}</h3>
+  <p class="video-meta">{{ video.duration }}</p>
+  <p *ngIf="video.description" class="video-description">
+    {{ video.description }}
+  </p>
+</div>

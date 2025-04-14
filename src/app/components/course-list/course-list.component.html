@@ -1,0 +1,19 @@
+<div class="playlist-section">
+  <div class="playlist-header">
+    <h4>The Courses Program</h4>
+    <span class="video-count">{{ videos.length }} videos</span>
+  </div>
+  <div class="video-list">
+    <div class="list-container">
+      <app-course-item
+        *ngFor="let video of videos; let i = index"
+        [video]="video"
+        [index]="i"
+        [isActive]="video.id === currentVideoId"
+        (selectVideoEvent)="selectVideo($event)"
+        class="video-item-animation"
+        [style.animation-delay]="i * 0.05 + 's'"
+      ></app-course-item>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+.video-item {
+  display: flex;
+  padding: 0.85rem 1.1rem;
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #1976d2, #64b5f6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    background: #f5f9ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  &.active {
+    background: #e3f2fd;
+    border-color: #90caf9;
+    box-shadow: 0 3px 8px rgba(33, 150, 243, 0.25);
+
+    &::before {
+      opacity: 1;
+    }
+
+    h5 {
+      color: #1976d2;
+      font-weight: 600;
+      transform: translateX(4px);
+    }
+
+    .index-badge {
+      background: #1976d2;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 2px 5px rgba(25, 118, 210, 0.3);
+    }
+  }
+
+  &.watched {
+    .watched-icon {
+      color: #4caf50;
+    }
+  }
+
+  .video-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .course-index {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+
+      .index-badge {
+        font-weight: 600;
+        color: #555;
+        font-size: 0.85rem;
+        line-height: 1;
+        background: #e3f2fd;
+        min-width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      h5 {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.4;
+      }
+    }
+
+    .video-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .meta-info {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        .time-icon {
+          font-size: 16px;
+          height: 16px;
+          width: 16px;
+          color: #757575;
+        }
+
+        .duration {
+          font-size: 0.8rem;
+          color: #666;
+          font-weight: 500;
+        }
+      }
+
+      .status-indicator {
+        display: flex;
+        align-items: center;
+
+        .watched-icon {
+          font-size: 18px;
+          height: 18px;
+          width: 18px;
+          color: #4caf50;
+        }
+
+        .unwatched-circle {
+          height: 14px;
+          width: 14px;
+          border: 2px solid #ccc;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .video-item {
+    padding: 0.5rem;
+    gap: 0.5rem;
+
+    .video-details {
+      h5 {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

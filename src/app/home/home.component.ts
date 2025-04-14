@@ -6,6 +6,7 @@ import {
 } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { VideoListComponent } from '../video-list/video-list.component';
+import { CourseContentListComponent } from '../course-content-list/course-content-list.component';
 
 @Component({
   selector: 'app-home',
@@ -28,5 +29,17 @@ export class HomeComponent {
     dialogConfig.autoFocus = false;
 
     this.dialog.open(VideoListComponent, dialogConfig);
+  }
+  openVideoList2() {
+    const dialogConfig2 = new MatDialogConfig();
+    dialogConfig2.maxWidth = '100vw';
+    dialogConfig2.maxHeight = '100vh';
+    dialogConfig2.height = '100vh';
+    dialogConfig2.width = '100vw';
+    dialogConfig2.panelClass = 'full-screen-dialog';
+    dialogConfig2.hasBackdrop = true;
+    dialogConfig2.autoFocus = false;
+
+    this.dialog.open(CourseContentListComponent, dialogConfig2);
   }
 }

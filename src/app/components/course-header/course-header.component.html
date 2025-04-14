@@ -1,0 +1,34 @@
+<div class="dialog-header">
+  <h2 class="dialog-title">Course Content</h2>
+  <div class="controls">
+    <button
+      mat-icon-button
+      (click)="zoomOut()"
+      [disabled]="zoomLevel <= MIN_ZOOM"
+      matTooltip="Zoom out"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+    <button mat-icon-button (click)="resetZoom()" matTooltip="Reset zoom">
+      <mat-icon>refresh</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      (click)="zoomIn()"
+      [disabled]="zoomLevel >= MAX_ZOOM"
+      matTooltip="Zoom in"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+    <mat-divider vertical></mat-divider>
+    <button
+      mat-icon-button
+      (click)="toggleLayout()"
+      [matTooltip]="isStackedLayout ? 'Side by side view' : 'Stacked view'"
+    >
+      <mat-icon>{{
+        isStackedLayout ? "view_sidebar" : "view_agenda"
+      }}</mat-icon>
+    </button>
+  </div>
+</div>

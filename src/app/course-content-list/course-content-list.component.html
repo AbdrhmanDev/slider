@@ -1,0 +1,40 @@
+<div class="video-playlist-container">
+  <!-- Course Header Component -->
+  <app-course-header
+    [isStackedLayout]="isStackedLayout"
+    [zoomLevel]="zoomLevel"
+    (toggleLayoutEvent)="toggleLayout()"
+    (zoomChangeEvent)="handleZoomChange($event)"
+  ></app-course-header>
+
+  <div class="content-wrapper" [class.stacked-layout]="isStackedLayout">
+    <div
+      class="zoomable-content"
+      [style.transform]="'scale(' + zoomLevel + ')'"
+    >
+      <!-- Video Player Section -->
+      <div class="video-container">
+        <div class="main-video-section">
+          <div class="video-player">
+            <!-- Videogular player component -->
+            <app-videogular-player
+              [videoSrc]="getCurrentVideo()?.src || ''"
+            ></app-videogular-player>
+          </div>
+
+          <!-- Video Info Component -->
+          <app-video-info [video]="getCurrentVideo()"></app-video-info>
+        </div>
+      </div>
+
+      <!-- Course List Component -->
+      <div class="playlist-container">
+        <app-course-list
+          [videos]="videos"
+          [currentVideoId]="currentVideoId"
+          (selectVideoEvent)="selectVideo($event)"
+        ></app-course-list>
+      </div>
+    </div>
+  </div>
+</div>

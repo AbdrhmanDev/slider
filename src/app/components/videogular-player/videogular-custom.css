@@ -1,0 +1,49 @@
+/* Custom Videogular Player Styles */
+
+/* Video element */
+.custom-vg-player video {
+  border-radius: 8px !important;
+  width: 100% !important;
+}
+::ng-deep vg-controls {
+  background: rgba(0, 0, 0, 0.6);
+  color: rgb(136, 20, 20) !important;
+  height: 40px;
+  font-size: 14px;
+}
+
+/* Style for Videogular icon buttons */
+::ng-deep .vg-icon-play_arrow::before {
+  font-family: "Material Icons";
+  content: "play_arrow";
+  font-size: 24px;
+  color: white;
+}
+
+::ng-deep .vg-icon-pause::before {
+  font-family: "Material Icons";
+  content: "pause";
+  font-size: 24px;
+  color: white;
+}
+
+::ng-deep .vg-icon-volume_up::before {
+  font-family: "Material Icons";
+  content: "volume_up";
+  font-size: 24px;
+  color: white;
+}
+
+::ng-deep .vg-icon-fullscreen::before {
+  font-family: "Material Icons";
+  content: "fullscreen";
+  font-size: 24px;
+  color: white;
+}
+
+::ng-deep .vg-icon-fullscreen_exit::before {
+  font-family: "Material Icons";
+  content: "fullscreen_exit";
+  font-size: 24px;
+  color: white;
+}
