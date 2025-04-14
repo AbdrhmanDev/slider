@@ -1,0 +1,54 @@
+<div class="video-list-wrapper" [class.stacked-layout]="isStackedLayout">
+  <div class="video-list-header">
+    <button mat-icon-button (click)="closeDialog()" matTooltip="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="controls">
+      <button
+        mat-icon-button
+        (click)="zoomOut()"
+        [disabled]="zoomLevel <= MIN_ZOOM"
+        matTooltip="Zoom out"
+      >
+        <mat-icon>remove</mat-icon>
+      </button>
+      <button mat-icon-button (click)="resetZoom()" matTooltip="Reset zoom">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="zoomIn()"
+        [disabled]="zoomLevel >= MAX_ZOOM"
+        matTooltip="Zoom in"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+      <mat-divider vertical></mat-divider>
+      <button
+        mat-icon-button
+        (click)="toggleLayout()"
+        [matTooltip]="
+          isStackedLayout ? 'Switch to side-by-side' : 'Switch to stacked'
+        "
+      >
+        <mat-icon>{{
+          isStackedLayout ? "view_agenda" : "view_sidebar"
+        }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-wrapper" [style.zoom]="zoomLevel">
+    <app-video-player-section
+      [video]="currentVideo"
+      class="video-player-section"
+    ></app-video-player-section>
+
+    <app-video-playlist
+      [videos]="videos"
+      [activeVideoId]="currentVideo.id"
+      (videoSelected)="playVideo($event)"
+      class="playlist-section"
+    ></app-video-playlist>
+  </div>
+</div>

@@ -6,8 +6,11 @@ import {
   CustomEvent,
   ImageViewerConfig,
 } from 'ngx-image-viewer-3';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { ThumbnailGalleryComponent } from './thumbnail-gallery/thumbnail-gallery.component';
 import { FullscreenViewerComponent } from './fullscreen-viewer/fullscreen-viewer.component';
+import { VideoListComponent } from '../video-list/video-list.component';
 
 @Component({
   selector: 'app-slider',
@@ -15,6 +18,8 @@ import { FullscreenViewerComponent } from './fullscreen-viewer/fullscreen-viewer
   imports: [
     CommonModule,
     ImageViewerModule,
+    MatButtonModule,
+    MatDialogModule,
     ThumbnailGalleryComponent,
     FullscreenViewerComponent,
   ],
@@ -40,6 +45,8 @@ export class SliderComponent {
       { name: 'link', icon: 'fa fa-link' },
     ],
   };
+
+  constructor(private dialog: MatDialog) {}
 
   onThumbnailClick(index: number): void {
     this.currentIndex = index;
@@ -69,5 +76,16 @@ export class SliderComponent {
         console.log('clipboard copied');
         break;
     }
+  }
+
+  openVideoList(): void {
+    this.dialog.open(VideoListComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100vh',
+      width: '100vw',
+      panelClass: 'full-screen-dialog',
+      autoFocus: false,
+    });
   }
 }
